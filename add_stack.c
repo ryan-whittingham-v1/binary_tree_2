@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include"PA3.h"
 
-int addStack(struct node *sentinel, int nodeData){
+int add_stack(struct node *sentinel, int nodeData){
 	
 	struct node *newNode=get_node();//Allocate memory for a new node and assign address to newNode
 	if(newNode != NULL){//If space available

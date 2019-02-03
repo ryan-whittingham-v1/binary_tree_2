@@ -20,6 +20,7 @@ void main(){
 	char userLetter[100];
 	int userNum;
 	int ret;
+	int popNum;
 	int mode=0;//Stack==0, Queue==1
 	struct node *stack;
 	struct node *queue;
@@ -36,7 +37,7 @@ void main(){
 		if(ret!=1){//If not a number
 			sscanf(buffer, "%s", userLetter);//Rescan for valid character
 			if(strcmp(userLetter, "s")==0){//Switch to stack mode
-				printf("Stack mode\n");
+				printf("\nStack mode\n");
 				print(stack);
 				mode=0;
 			}
@@ -44,20 +45,32 @@ void main(){
 				printf("Queue Mode\n");
 				mode=1;
 			}
+			else if(strcmp(userLetter, "p")==0){//remove next in list
+				if(mode==0){//In stack mode
+					ret=pop_stack(stack, &popNum);
+					if (ret==0){//If list is not empty
+						printf("%d\n\n", popNum);
+					}
+					else{//List is empty
+						printf("Stack is empty.\n\n");
+					}
+				}
+			}
 			else if(strcmp(userLetter, "Q")==0){//Exit
 				return;
 			}
 			else{
-				printf("Invalid input\n");//Display help
+				printf("Invalid input\n\n");//Display help
 			}
 		}
 		else if(mode==0){//In Stack mode
-			printf("Add %d to the stack.\n", userNum);
-			addStack(stack, userNum);
+			printf("Add %d to the stack.\n\n", userNum);
+			add_stack(stack, userNum);
 		}
 		else{//In Queue mode	
-			printf("Add %d to the queue.\n", userNum);
+			printf("Add %d to the queue.\n\n", userNum);
 		}
+		strcpy(userLetter, "x");//Reset user input
 	}
 
 	return;

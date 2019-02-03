@@ -7,9 +7,9 @@ struct node {
 };
 
 struct node * init(void);
-int addStack(struct node *, int);
+int add_stack(struct node *, int);
+int pop_stack(struct node *, int *);
 void print(struct node *);
 struct node * get_node(void);
-void release_node(struct node *);
 int freeMem(struct node *);
 

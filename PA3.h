@@ -9,6 +9,8 @@ struct node {
 struct node * init(void);
 int add_stack(struct node *, int);
 int pop_stack(struct node *, int *);
+int add_queue(struct node *, int);
+int pop_queue(struct node *, int *);
 void print(struct node *);
 struct node * get_node(void);
 int freeMem(struct node *);

@@ -43,18 +43,23 @@ void main(){
 			}
 			else if(strcmp(userLetter, "q")==0){//Swich to queue mode
 				printf("Queue Mode\n");
+				print(queue);
 				mode=1;
 			}
 			else if(strcmp(userLetter, "p")==0){//remove next in list
 				if(mode==0){//In stack mode
 					ret=pop_stack(stack, &popNum);
-					if (ret==0){//If list is not empty
-						printf("%d\n\n", popNum);
-					}
-					else{//List is empty
-						printf("Stack is empty.\n\n");
-					}
 				}
+				else{//In queue mode
+					ret=pop_queue(queue, &popNum);
+				}
+				if (ret==0){//If list is not empty
+					printf("%d\n\n", popNum);
+				}
+				else{//List is empty
+					printf("List is empty.\n\n");
+				}
+				
 			}
 			else if(strcmp(userLetter, "Q")==0){//Exit
 				return;
@@ -69,6 +74,7 @@ void main(){
 		}
 		else{//In Queue mode	
 			printf("Add %d to the queue.\n\n", userNum);
+			add_queue(queue, userNum);
 		}
 		strcpy(userLetter, "x");//Reset user input
 	}

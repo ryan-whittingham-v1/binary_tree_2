@@ -27,24 +27,36 @@ void main(){
 
         stack=init();//Creates sentinel node for stack list
 	queue=init();//Creates sentinel node for queue list
-
+	printf("\n Welcome. This program demonstrates the use of a stack and a queue.\n");
+	printf("------------------------------------------------------------------\n");
+	show_options();
 	while(1==1){
 		
-		printf(">");
+		printf("\n>");
 		fgets(buffer, 100, stdin);//Get user input
 		ret=sscanf(buffer, "%9d", &userNum);//Scan for number to add to list
 		
-		if(ret!=1){//If not a number
-			sscanf(buffer, "%s", userLetter);//Rescan for valid character
+		if(ret!=1){//If uesr input not a number
+			sscanf(buffer, "%s", userLetter);//Rescan to check for valid option
 			if(strcmp(userLetter, "s")==0){//Switch to stack mode
-				printf("\nStack mode\n");
-				print(stack);
-				mode=0;
+				if(mode==1){
+					printf("Switching to stack mode.\n");
+				}
+				mode=0;//Set mode to stack
+				ret=print(stack, mode);
+				if(ret==0){//If stack is empty
+					printf("Stack is empty.\n");
+				}
 			}
 			else if(strcmp(userLetter, "q")==0){//Swich to queue mode
-				printf("Queue Mode\n");
-				print(queue);
-				mode=1;
+				if(mode==0){
+					printf("Switching to queue mode.\n");
+				}
+				mode=1;//Set mode to queue
+				ret=print(queue, mode);
+				if(ret==0){//If queue is empty
+					printf("Queue is empty.\n");
+				}
 			}
 			else if(strcmp(userLetter, "p")==0){//remove next in list
 				if(mode==0){//In stack mode
@@ -54,10 +66,15 @@ void main(){
 					ret=pop_queue(queue, &popNum);
 				}
 				if (ret==0){//If list is not empty
-					printf("%d\n\n", popNum);
+					printf("%d\n", popNum);
 				}
 				else{//List is empty
-					printf("List is empty.\n\n");
+					if(mode==0){
+					printf("Error: Stack is empty.\n");
+					}
+					else{
+					printf("Error: Queue is empty.\n");
+					}
 				}
 				
 			}
@@ -65,15 +82,13 @@ void main(){
 				return;
 			}
 			else{
-				printf("Invalid input\n\n");//Display help
+				show_options();//Display help
 			}
 		}
 		else if(mode==0){//In Stack mode
-			printf("Add %d to the stack.\n\n", userNum);
 			add_stack(stack, userNum);
 		}
 		else{//In Queue mode	
-			printf("Add %d to the queue.\n\n", userNum);
 			add_queue(queue, userNum);
 		}
 		strcpy(userLetter, "x");//Reset user input

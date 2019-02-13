@@ -13,6 +13,6 @@ int add_queue(struct node *, int);
 int pop_queue(struct node *, int *);
 int print(struct node *, int);
 struct node * get_node(void);
-int freeMem(struct node *);
+int free_mem(struct node *);
 void show_options();
 

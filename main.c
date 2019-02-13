@@ -30,6 +30,7 @@ void main(){
 	printf("\n Welcome. This program demonstrates the use of a stack and a queue.\n");
 	printf("------------------------------------------------------------------\n");
 	show_options();
+	printf("\nCurrently in stack mode.\n");
 	while(1==1){
 		
 		printf("\n>");
@@ -39,7 +40,7 @@ void main(){
 		if(ret!=1){//If uesr input not a number
 			sscanf(buffer, "%s", userLetter);//Rescan to check for valid option
 			if(strcmp(userLetter, "s")==0){//Switch to stack mode
-				if(mode==1){
+				if(mode==1){//If in queue mode
 					printf("Switching to stack mode.\n");
 				}
 				mode=0;//Set mode to stack
@@ -49,7 +50,7 @@ void main(){
 				}
 			}
 			else if(strcmp(userLetter, "q")==0){//Swich to queue mode
-				if(mode==0){
+				if(mode==0){//If in stack mode
 					printf("Switching to queue mode.\n");
 				}
 				mode=1;//Set mode to queue
@@ -79,6 +80,8 @@ void main(){
 				
 			}
 			else if(strcmp(userLetter, "Q")==0){//Exit
+				free_mem(stack);//Free all reamining nodes in stack
+				free_mem(queue);//Free all remaining nodes in queue
 				return;
 			}
 			else{

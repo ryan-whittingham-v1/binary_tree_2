@@ -1,15 +1,15 @@
 #include<stdio.h>
-#include"PA3.h"
+#include"PA4.h"
 
 /* 
 Ryan Whittingham
 CSE 222
-February 2, 2019
-Programming Assignment 3
+February 18, 2019
+Programming Assignment 4
 
 -----------------------------------------------
-PA3 is a C program that allows the user to dynamically store
-a list of integers in either a stack or queue data structure.
+PA4 is a C program that allows the user to store
+integers into a binary search tree structure.
 -----------------------------------------------
 */
 
@@ -25,77 +25,43 @@ void main(){
 	struct node *stack;
 	struct node *queue;
 
-        stack=init();//Creates sentinel node for stack list
-	queue=init();//Creates sentinel node for queue list
-	printf("\n Welcome. This program demonstrates the use of a stack and a queue.\n");
-	printf("------------------------------------------------------------------\n");
-	show_options();
-	printf("\nCurrently in stack mode.\n");
+	printf("\nLet's build a binary search tree.\n");
+	printf("-------------------------------------\n");
 	while(1==1){
 		
 		printf("\n>");
 		fgets(buffer, 100, stdin);//Get user input
-		ret=sscanf(buffer, "%9d", &userNum);//Scan for number to add to list
+		ret=sscanf(buffer, "%9d", &userNum);//Scan for number to add to tree
 		
-		if(ret!=1){//If uesr input not a number
-			sscanf(buffer, "%s", userLetter);//Rescan to check for valid option
-			if(strcmp(userLetter, "s")==0){//Switch to stack mode
-				if(mode==1){//If in queue mode
-					printf("Switching to stack mode.\n");
+		if(ret!=1){//If user input was not a single number
+			ret=sscanf(buffer, "%s" "%d", userLetter, &userNum);//Rescan to check for valid option
+			if(ret==2){//If user input a character and number
+				if(strcmp(userLetter, "s")==0){//If search for number
+					printf("Search for %d\n", userNum);
 				}
-				mode=0;//Set mode to stack
-				ret=print(stack, mode);
-				if(ret==0){//If stack is empty
-					printf("Stack is empty.\n");
+				else if(strcmp(userLetter, "d")==0){//If d, delete number
+					printf("Delete %d\n", userNum);
 				}
 			}
-			else if(strcmp(userLetter, "q")==0){//Swich to queue mode
-				if(mode==0){//If in stack mode
-					printf("Switching to queue mode.\n");
+			else if(ret!=2){//User input only characters
+				sscanf(buffer, "%s", userLetter);
+				if(strcmp(userLetter, "X")==0){//If X, display tree information
+					printf("Display tree information.\n");
 				}
-				mode=1;//Set mode to queue
-				ret=print(queue, mode);
-				if(ret==0){//If queue is empty
-					printf("Queue is empty.\n");
+				else if(strcmp(userLetter, "?")==0){//If ?, display help
+					printf("Display help.\n");
 				}
-			}
-			else if(strcmp(userLetter, "p")==0){//remove next in list
-				if(mode==0){//In stack mode
-					ret=pop_stack(stack, &popNum);
+				else if(strcmp(userLetter, "Q")==0){//If Q, quit
+					printf("Goodbye.\n");
+					return;
 				}
-				else{//In queue mode
-					ret=pop_queue(queue, &popNum);
-				}
-				if (ret==0){//If list is not empty
-					printf("%d\n", popNum);
-				}
-				else{//List is empty
-					if(mode==0){
-					printf("Error: Stack is empty.\n");
-					}
-					else{
-					printf("Error: Queue is empty.\n");
-					}
-				}
-				
-			}
-			else if(strcmp(userLetter, "Q")==0){//Exit
-				free_mem(stack);//Free all reamining nodes in stack
-				free_mem(queue);//Free all remaining nodes in queue
-				return;
-			}
-			else{
-				show_options();//Display help
+			
 			}
 		}
-		else if(mode==0){//In Stack mode
-			add_stack(stack, userNum);
-		}
-		else{//In Queue mode	
-			add_queue(queue, userNum);
+		else{//User input a number to add to the tree
+			printf("Add %d to the tree.\n", userNum);
 		}
 		strcpy(userLetter, "x");//Reset user input
 	}
 
-	return;
 }

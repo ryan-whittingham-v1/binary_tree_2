@@ -1,11 +1,11 @@
 #include<stdio.h>
-#include"PA3.h"
+#include"PA4.h"
 
-struct node * init(void){
-        struct node *sentinel;
-        sentinel=get_node();//Allocate memmory and assign address to sentinel
-        sentinel->data=42;
-        sentinel->next=NULL;
-        return sentinel;
+struct bstNode * init(void){
+        struct bstNode *root=malloc(sizeof(struct bstNode));
+	root->data=0;
+        root->left=NULL;
+	root->right=NULL;
+        return root;
 }
 

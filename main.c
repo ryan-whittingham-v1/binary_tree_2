@@ -20,10 +20,10 @@ void main(){
 	char userLetter[100];
 	int userNum;
 	int ret;
-	int popNum;
-	int mode=0;//Stack==0, Queue==1
-	struct node *stack;
-	struct node *queue;
+	struct bstNode *root;
+	struct bstNode *newNode;
+
+	root=init();//Allocate memory for root node and init values to NULL	
 
 	printf("\nLet's build a binary search tree.\n");
 	printf("-------------------------------------\n");
@@ -60,6 +60,26 @@ void main(){
 		}
 		else{//User input a number to add to the tree
 			printf("Add %d to the tree.\n", userNum);
+			ret=tree_search(root, userNum);//Search if number already in list
+			if(ret==0){//If the number is in the list
+				printf("%d is already in the tree.\n", userNum);
+			}
+			else{//If number is not in the list
+				printf("%d is not in the list.\n", userNum);
+				newNode=init();
+				newNode->data=userNum;//Assign number to newNode
+				tree_insert(root, newNode);//Add node to tree
+			}
+
+			
+			//if(number not in tree){
+			//	newNode=create_node(//Create node and assign number to it
+			//	tree_insert(root, newNode);
+		//	}
+		//	else{
+		//		printf("Number already in the tree.\n");
+		//	}
+			
 		}
 		strcpy(userLetter, "x");//Reset user input
 	}

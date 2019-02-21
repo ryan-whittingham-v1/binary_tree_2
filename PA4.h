@@ -13,3 +13,4 @@ struct bstNode * init(void);
 //void show_options();
 int tree_search(struct bstNode *, int);
 int tree_insert(struct bstNode *, struct bstNode *);
+void lnr(struct bstNode *);

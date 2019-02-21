@@ -25,7 +25,7 @@ void main(){
 
 	root=init();//Allocate memory for root node and init values to NULL	
 
-	printf("\nLet's build a binary search tree.\n");
+	printf("\nLet's play with a binary search tree.\n");
 	printf("-------------------------------------\n");
 	while(1==1){
 		
@@ -38,6 +38,13 @@ void main(){
 			if(ret==2){//If user input a character and number
 				if(strcmp(userLetter, "s")==0){//If search for number
 					printf("Search for %d\n", userNum);
+					ret=tree_search(root, userNum);
+					if(ret==0){
+						printf("Found\n");
+					}
+					else{
+						printf("Not found\n");
+					}
 				}
 				else if(strcmp(userLetter, "d")==0){//If d, delete number
 					printf("Delete %d\n", userNum);
@@ -47,6 +54,8 @@ void main(){
 				sscanf(buffer, "%s", userLetter);
 				if(strcmp(userLetter, "X")==0){//If X, display tree information
 					printf("Display tree information.\n");
+					printf("LNR: ");
+					lnr(root);
 				}
 				else if(strcmp(userLetter, "?")==0){//If ?, display help
 					printf("Display help.\n");

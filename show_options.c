@@ -2,12 +2,12 @@
 
 void show_options(void){
 
-	printf("\nUsage:\n");
-	printf("#	insert # into a stack or queue\n");
-	printf("s	select STACK mode and display stack\n");
-	printf("q	select QUEUE mode and display queue\n");
-	printf("p	remove top of stack/head of queue and display\n");
-	printf("Q	Quit\n");
-	printf("?	Display help\n");
+	printf("\nValid Commands:\n");
+	printf("#	Insert # into the binary search tree\n");
+	printf("s #	Search for that # in the BST\n");
+	printf("d #	Removes that # from the BST\n");
+	printf("X	Displays information about the BST\n");
+	printf("?	Displays help\n");
+	printf("Q	Exits the program\n");
 
 }

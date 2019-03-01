@@ -12,7 +12,7 @@ struct queueNode {
 };
 	
 struct bstNode * init(void);
-//int free_mem(struct node *);
+void free_mem(struct bstNode *);
 void show_options();
 int tree_search(struct bstNode *, int);
 struct bstNode * tree_insert(struct bstNode *, struct bstNode *);

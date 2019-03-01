@@ -2,15 +2,16 @@
 #include"PA4.h"
 
 struct bstNode * tree_insert(struct bstNode *root, struct bstNode *newNode){
-	if(root==NULL){//Once root becomes NULL (base case) 
-		return newNode;//Return newNode to be either assigned to root->left or root->right in recursive calls
+	if(root==NULL){
+		return newNode;
 	}
 	
-	else if(newNode->data<root->data){
-			root->left=tree_insert(root->left, newNode); 
+	if(newNode->data<root->data){//If number is less than root
+			root->left=tree_insert(root->left, newNode);//Check left tree of root 
 	}
-	else if(newNode->data>root->data){
-			root->right=tree_insert(root->right, newNode);
+	else if(newNode->data>root->data){//If number is bigger than root
+			root->right=tree_insert(root->right, newNode);//Check right tree of root
 	}
+	return root;
 }
 

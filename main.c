@@ -10,10 +10,9 @@ Programming Assignment 4
 -----------------------------------------------
 PA4 is a C program that allows the user to store
 integers into a binary search tree and displays 
-information about it. 
+information about the tree. 
 -----------------------------------------------
 */
-
 
 void main(){
 	
@@ -28,39 +27,6 @@ void main(){
 	printf("-----------------------------------\n");
 	show_options();
 	
-//	root=init();
-	
-	newNode=init();//Create new BST node
-	newNode->data=50;//Assign input number to newNode
-	if(root==NULL){
-		root=newNode;
-	}
-	//tree_insert(root, newNode);//Add newNode to the BST
-
-	newNode=init();//Create new BST node
-	newNode->data=30;//Assign input number to newNode
-	tree_insert(root, newNode);//Add newNode to the BST
-
-	newNode=init();//Create new BST node
-	newNode->data=20;//Assign input number to newNode
-	tree_insert(root, newNode);//Add newNode to the BST
-
-	newNode=init();//Create new BST node
-	newNode->data=40;//Assign input number to newNode
-	tree_insert(root, newNode);//Add newNode to the BST
-
-	newNode=init();//Create new BST node
-	newNode->data=70;//Assign input number to newNode
-	tree_insert(root, newNode);//Add newNode to the BST
-	
-	newNode=init();//Create new BST node
-	newNode->data=60;//Assign input number to newNode
-	tree_insert(root, newNode);//Add newNode to the BST
-
-	newNode=init();//Create new BST node
-	newNode->data=80;//Assign input number to newNode
-	tree_insert(root, newNode);//Add newNode to the BST
-	
 	while(1==1){
 		
 		printf("\n>");
@@ -71,20 +37,22 @@ void main(){
 			ret=sscanf(buffer, "%s" "%d", userLetter, &userNum);//Rescan input to check for valid command
 			if(ret==2){//If user input a character and a number
 				if(strcmp(userLetter, "s")==0){//Search for number
-					printf("Search for %d\n", userNum);
-					ret=tree_search(root, userNum);
-					if(ret==0){//If number is found
+					if(root!=NULL){
+						ret=tree_search(root, userNum);
+						if(ret==0){//If number is found
 						printf("Found\n");
+						}
 					}
 					else{//If number is not found
 						printf("Not found\n");
 					}
 				}
 				else if(strcmp(userLetter, "d")==0){//Delete number
-					printf("Delete %d\n", userNum);
-					ret=tree_search(root, userNum);
-					if(ret==0){
-						tree_delete(root, userNum);
+					if(root!=NULL){//If tree not empty
+						ret=tree_search(root, userNum);
+						if(ret==0){
+							root=tree_delete(root, userNum);
+						}
 					}
 					else{
 						printf("%d is not in the tree.\n", userNum);
@@ -118,26 +86,26 @@ void main(){
 				}
 				else if(strcmp(userLetter, "Q")==0){//If Q, quit
 					printf("Goodbye.\n");
-					//free_mem(root);
+					free_mem(root);
 					return;
 				}
 			}
 		}
-		else{//User input just a single number to add to the BST
-			printf("Add %d to the tree.\n", userNum);
-			ret=tree_search(root, userNum);//Search if number already in list
-			if(ret==0){//Number is in the list
-				printf("%d is already in the tree.\n", userNum);
-			}
-			else{//Number is not in the list
-				printf("%d is not in the list.\n", userNum);
+		else{//User input is just a single number to add to the BST
+			if(root==NULL){//If tree is empty
 				newNode=init();//Create new BST node
-				newNode->data=userNum;//Assign input number to newNode
-				if(root==NULL){//If tree is empty
-					root=newNode;
+                                newNode->data=userNum;//Assign input number to newNode
+				root=newNode;//Assign newNode to root
+			}
+			else if(root!=NULL){//If tree not empty
+				ret=tree_search(root, userNum);//Search if number already in list
+				if(ret==0){//Number is in the list
+					printf("%d is already in the tree.\n", userNum);
 				}
-				else{
-				tree_insert(root, newNode);//Add newNode to the BST
+				else{//Number is not in the list
+					newNode=init();//Create new BST node
+					newNode->data=userNum;//Assign input number to newNode
+					tree_insert(root, newNode);//Add newNode to the BST
 				}
 			}
 		}

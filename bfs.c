@@ -18,4 +18,12 @@ void bfs(struct bstNode *root){
 			add_queue(sentinel, nextNode->right);//Add that right node to queue
 		}
 	}
+	//Free all queue nodes
+	struct queueNode *temp;
+        while(sentinel != NULL){//While not the end of the list
+                temp=sentinel->next;//Temp holds next location before freeing
+                free(sentinel);//Free the memmory 
+                sentinel=temp;//Jump to next node to be freed
+        }
+        return;
 }

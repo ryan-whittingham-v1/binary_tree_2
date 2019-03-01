@@ -1,16 +1,15 @@
 #include<stdio.h>
-#include"PA3.h"
+#include"PA4.h"
 
-int add_queue(struct node *node, int nodeData){
+int add_queue(struct queueNode *sentinel, struct bstNode *treeNode){
 	
-	struct node *newNode=get_node();//Allocate memory for a new node and assign address to newNode
-
+	struct queueNode *newNode=get_node();//Allocate memory for a new queue node and assign address to newNode
+	newNode->data=treeNode;//Attach incoming tree node to new node's current pointer 
 	if(newNode != NULL){//If space available
-		while(node->next != NULL){//crawl through list till end
-			node=node->next;
+		while(sentinel->next != NULL){//crawl through list till end
+			sentinel=sentinel->next;
 		}
-		node->next=newNode;//Last node points to newNode
-		newNode->data=nodeData;//Assign user number to node
+		sentinel->next=newNode;//Last node points to newNode
                 newNode->next=NULL;//newNode points to NULL
                 return 1;//Success
 	}

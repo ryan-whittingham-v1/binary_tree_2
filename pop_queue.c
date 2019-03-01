@@ -1,14 +1,12 @@
 #include<stdio.h>
-#include"PA3.h"
+#include"PA4.h"
 
-int pop_queue(struct node *sentinel, int *dataPop){
+struct bstNode * pop_queue(struct queueNode *sentinel){
 	if(sentinel->next != NULL){//If list is not empty
-		struct node *nodePop;
-		nodePop=sentinel->next;
-		*dataPop=nodePop->data;//Popped number
+		struct queueNode *nodePop=sentinel->next;//Create nodePop pointer to first in queue
 		sentinel->next=nodePop->next;//Set sentinel to point to node after popped node
-		free(nodePop);//Release memory of popped node 
-		return 0;//Success
+		//free(nodePop);//Release memory of popped node 
+		return nodePop->data;//Success
 	}
-	return 1;//Fail
+	return NULL;//Fail
 }

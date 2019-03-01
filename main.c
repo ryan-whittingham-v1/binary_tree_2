@@ -101,6 +101,17 @@ void main(){
 					nlr(root);
 					printf("\nLRN: ");
 					lrn(root);
+					printf("\nBFS: ");
+					bfs(root);
+					printf("\nTree Height: %d ", tree_height(root));
+					printf("\nBalanced: ");
+					ret=is_balanced(root);
+					if(ret==0){//Tree is balanced
+						printf("YES");
+					}
+					else{//Tree is not balanced
+						printf("NO");
+					}
 				}
 				else if(strcmp(userLetter, "?")==0){//If ?, display help
 					show_options();

@@ -6,9 +6,12 @@ struct bstNode {
         struct bstNode *left;
 	struct bstNode *right;
 };
-
+struct queueNode {
+	struct bstNode *data;
+	struct queueNode *next;
+};
+	
 struct bstNode * init(void);
-//int add_queue(struct node *, int);
 //int free_mem(struct node *);
 void show_options();
 int tree_search(struct bstNode *, int);
@@ -17,3 +20,9 @@ struct bstNode * tree_delete(struct bstNode *, int);
 void lnr(struct bstNode *);
 void nlr(struct bstNode *);
 void lrn(struct bstNode *);
+void bfs(struct bstNode *);
+int tree_height(struct bstNode *);
+int is_balanced(struct bstNode *);
+int add_queue(struct queueNode *, struct bstNode *);
+struct bstNode * pop_queue(struct queueNode *);
+struct queueNode * get_node(void);
